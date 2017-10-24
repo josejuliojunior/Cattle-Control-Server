@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   knex('cattles')
     .select()
     .then(cattles => {
-      res.render('all', { cattles: cattles });
+      res.json(cattles);
     });
 });
 
