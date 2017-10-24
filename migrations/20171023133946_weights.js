@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer('cattleID').references('cattles.id').unsigned().onDelete('cascade');
     table.integer('weight').notNullable();
-    table.datetime('date').notNullable();
+    table.date('date').notNullable();
   });
 };
 
