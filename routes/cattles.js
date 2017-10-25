@@ -11,8 +11,15 @@ router.get('/', (req, res) => {
     });
 });
 
-// router.get('/new', (req, res) => {
-//   res.render('new ');
-// });
+router.get('/:id', (req, res) => {
+  let id = req.params.id
+  knex('cattles')
+    .select()
+    .innerJoin('weights','cattles.id','=','weights.cattleID')
+    .where('cattles.id', id)
+    .then(cattles => {
+      res.json(cattles);
+    });
+});
 
 module.exports = router;
