@@ -18,8 +18,28 @@ router.get('/:id', (req, res) => {
     .innerJoin('weights','cattles.id','=','weights.cattleID')
     .where('cattles.id', id)
     .then(cattles => {
-      res.json(cattles);
+      const cattle = groupWeight(cattles);
+      res.json(cattle);
     });
 });
+
+
+
+function groupWeight(cattles) {
+  console.log(cattles);
+  return cattles.reduce(function (cattle, info) {
+    cattle.id = info.cattleID;
+    cattle.breedName = info.breedName;
+    cattle.dob = info.dob;
+    cattle.sex = info.sex;
+    cattle.origin = info.origin;
+    weight = {weight: info.weight, date: info.date};
+    console.log(weight);
+    cattle.weights = cattle.weights || [];
+    cattle.weights.push(weight);
+    return cattle;
+  },{});
+}
+
 
 module.exports = router;

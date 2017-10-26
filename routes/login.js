@@ -14,7 +14,7 @@ router.post('/', (req, res, next) => {
         if (user.length === 0) {
           res.json({
             error: 'Email or password did not match'
-          })
+          });
         } else {
           var match = bcrypt.compareSync(req.body.password, user[0].password)
           if (match) {
@@ -22,18 +22,18 @@ router.post('/', (req, res, next) => {
             var token = jwt.sign(user[0].id, process.env.TOKEN_SECRET);
             res.json({
               data: token
-            })
+            });
           } else {
             res.json({
               error: 'Email or password did not match'
-            })
+            });
           }
         }
-      })
+      });
   } else {
     res.json({
       error: 'please enter an email'
-    })
+    });
   }
 });
 
