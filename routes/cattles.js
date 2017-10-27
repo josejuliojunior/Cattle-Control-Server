@@ -15,9 +15,10 @@ router.get('/:id', (req, res) => {
   let id = req.params.id
   knex('cattles')
     .select()
-    .innerJoin('weights','cattles.id','=','weights.cattleID')
     .where('cattles.id', id)
+    .innerJoin('weights','cattles.id','=','weights.cattleID')
     .then(cattles => {
+      console.log(cattles);
       const cattle = groupWeight(cattles);
       res.json(cattle);
     });
@@ -26,13 +27,13 @@ router.get('/:id', (req, res) => {
 
 
 function groupWeight(cattles) {
-  console.log(cattles);
   return cattles.reduce(function (cattle, info) {
     cattle.id = info.cattleID;
     cattle.breedName = info.breedName;
     cattle.dob = info.dob;
     cattle.sex = info.sex;
     cattle.origin = info.origin;
+    console.log(info.weight);
     weight = {weight: info.weight, date: info.date};
     console.log(weight);
     cattle.weights = cattle.weights || [];
