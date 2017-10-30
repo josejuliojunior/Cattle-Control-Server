@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const knex =  require('../db/knex');
+const queries =  require('../db/queries');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -10,6 +11,11 @@ router.get('/', (req, res) => {
       res.json(cattles);
     });
 });
+
+router.post('/', (req, res) => {
+  let body = req.body;
+  queries.postCattle
+})
 
 router.get('/:id', (req, res) => {
   let id = req.params.id
@@ -24,6 +30,13 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  let id = req.params.id
+  queries.deleteCattle(id)
+    .then((data) => {
+      res.json({message: `cattle id: ${req.params.id} deleted`})
+    });
+})
 
 
 function groupWeight(cattles) {
@@ -31,6 +44,7 @@ function groupWeight(cattles) {
     cattle.id = info.cattleID;
     cattle.breedName = info.breedName;
     cattle.dob = info.dob;
+    cattle.age = new Today() - info.dob
     cattle.sex = info.sex;
     cattle.origin = info.origin;
     console.log(info.weight);
@@ -39,6 +53,7 @@ function groupWeight(cattles) {
     cattle.weights = cattle.weights || [];
     cattle.weights.push(weight);
     return cattle;
+    console.log(cattle);
   },{});
 }
 
