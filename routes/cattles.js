@@ -7,6 +7,7 @@ const queries =  require('../db/queries');
 router.get('/', (req, res) => {
   knex('cattles')
     .select()
+    // .innerJoin('weights','cattles.id','=','weights.cattleID')
     .then(cattles => {
       res.json(cattles);
     });
@@ -14,8 +15,11 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   let body = req.body;
-  queries.postCattle
-})
+  queries.postCattle(body)
+    .then(cattle => {
+      res.json(cattle)
+    });
+});
 
 router.get('/:id', (req, res) => {
   let id = req.params.id
@@ -44,17 +48,17 @@ function groupWeight(cattles) {
     cattle.id = info.cattleID;
     cattle.breedName = info.breedName;
     cattle.dob = info.dob;
-    cattle.age = new Today() - info.dob
     cattle.sex = info.sex;
     cattle.origin = info.origin;
-    console.log(info.weight);
     weight = {weight: info.weight, date: info.date};
-    console.log(weight);
     cattle.weights = cattle.weights || [];
     cattle.weights.push(weight);
     return cattle;
-    console.log(cattle);
   },{});
+}
+
+function reduce(cattles) {
+  let added = false
 }
 
 

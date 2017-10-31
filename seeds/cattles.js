@@ -6,61 +6,61 @@ exports.seed = function(knex, Promise) {
       const cattles = [{
         id: 1,
         breedName: 'angus',
-        dob: '2016-03-01',
+        dob: '2014-09-14',
         sex: 'male',
         origin: 'Alexandre'
       }, {
         id: 2,
         breedName: 'red angus',
-        dob: '2016-06-29',
+        dob: '2014-11-13',
         sex: 'male',
         origin: 'Diva'
       }, {
         id: 3,
         breedName: 'nelore',
-        dob: '2016-03-12',
+        dob: '2014-05-27',
         sex: 'male',
         origin: 'Cebola'
       }, {
         id: 4,
         breedName: 'angus',
-        dob: '2015-07-16',
+        dob: '2014-09-04',
         sex: 'male',
         origin: 'Cebola'
       },{
         id: 5,
         breedName: 'red angus',
-        dob: '2014-03-16',
+        dob: '2015-02-21',
         sex: 'male',
         origin: 'Diva'
       },{
         id: 6,
         breedName: 'nelore',
-        dob: '2015-05-12',
+        dob: '2015-05-24',
         sex: 'male',
         origin: 'Alexandre'
       },{
         id: 7,
         breedName: 'guzera',
-        dob: '2016-04-02',
+        dob: '2015-03-22',
         sex: 'male',
         origin: 'Rodrigo'
       },{
         id: 8,
         breedName: 'brangus',
-        dob: '2016-01-19',
+        dob: '2012-12-01',
         sex: 'male',
         origin: 'Rodrigo'
       },{
         id: 9,
         breedName: 'gir',
-        dob: '2016-09-29',
+        dob: '2014-08-02',
         sex: 'male',
         origin: 'Fernando'
       },{
         id: 10,
         breedName: 'gir',
-        dob: '2015-11-28',
+        dob: '2014-05-08',
         sex: 'male',
         origin: 'Fernando'
       }];
